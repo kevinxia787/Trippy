@@ -7,23 +7,34 @@ const foursquare = require('./config.json');
 app.listen(port, () => console.log(`Listening on port ${port}`));
 
 // connect
-request({
-    url: 'https://api.foursquare.com/v2/venues/explore',
-    method: 'GET',
-    qs: {
-        client_id: foursquare.CLIENT_ID,
-        client_secret: foursquare.CLIENT_SECRET,
-        ll: '40.7243,-74.0018',
-        query: 'coffee',
-        v: '20180323',
-        limit: 1
-    }
-}, function(err, res, body) {
-    if (err) {
-        console.error(err);
-    } else {
-        console.log(body);
-    }
+
+// food = 4d4b7105d754a06374d81259
+//
+app.get("/:user_location/:categoryId", (req, res) => {
+    const user_location = req.params.user_location;
+    const categoryId = req.params.categoryId;
+    console.log(user_location);
+    console.log(categoryId);
+    //todo call API and asssembly JSON to be parse to Front end
+    request({
+        url: 'https://api.foursquare.com/v2/venues/search',
+        method: 'GET',
+        qs: {
+            client_id: foursquare.CLIENT_ID,
+            client_secret: foursquare.CLIENT_SECRET,
+            ll: user_location,
+            categoryId: categoryId,
+            limit: 10,
+            v: '20180323'
+        }
+    }, function(err, res, body) {
+        if (err) {
+
+            console.error(err);
+        } else {
+            console.log(body);
+        }
+    });
 });
 
 
