@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, TextInput, StyleSheet, Platform} from 'react-native';
 import { Button } from 'react-native-elements';
 
+
 // fonts
 import { sanFranciscoWeights, robotoWeights } from 'react-native-typography'
 
