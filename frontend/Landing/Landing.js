@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TextInput, StyleSheet, TouchableOpacity} from 'react-native';
+import { View, Text, TextInput, StyleSheet, TouchableOpacity, Platform} from 'react-native';
 import { Header, Button } from 'react-native-elements';
 import { Font } from 'expo';
 
@@ -30,9 +30,11 @@ export default class Landing extends React.Component {
     return (
       <View>
         <Header 
-          centerComponent = {{text: "Trippy", style: {fontFamily: 'montserrat', fontSize: 25}}}
+          centerComponent = {{text: "Trippy", style: styles.text}}
           outerContainerStyles={{
-            backgroundColor:"#fff"
+            backgroundColor:"#fff",
+            justifyContent: 'space-around',
+            marginTop: (Platform.OS === 'android') ? 23 : 0,
           }}
         />
         <View style={{border: 1, alignItems: 'center', justifyContent: 'center'}}>
@@ -65,5 +67,11 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     backgroundColor: '#52b7ea',
     marginLeft: 144,
+  },
+  text: {
+    fontFamily: 'montserrat',
+    fontSize: 24,
+    alignItems: 'center',
+    marginTop: (Platform.OS === 'android') ? -10000 : 0,
   }
 })

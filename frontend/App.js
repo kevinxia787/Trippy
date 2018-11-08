@@ -1,5 +1,5 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View, Platform, StyleSheet } from 'react-native';
 
 import Cards from './Cards/Cards';
 import Landing from './Landing/Landing';
@@ -13,7 +13,6 @@ export default class App extends React.Component {
     )
   }
 }
-
 
 
 
