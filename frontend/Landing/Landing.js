@@ -33,7 +33,12 @@ export default class Landing extends React.Component {
             placeholder="Enter your location!"
             onChangeText={ (text) => this.setState({text})}
           /> 
-          <Button textStyle={{textAlign: 'right', fontFamily: (Platform.OS === 'ios') ? 'Avenir' : 'normal'}} color="white" buttonStyle={styles.button} title='GO'/>
+          <Button 
+            onPress={() =>{
+              this.props.navigation.navigate('Categories', {
+                location: this.state.text,
+              })
+            }} textStyle={{textAlign: 'right', fontFamily: (Platform.OS === 'ios') ? 'Avenir' : 'normal'}} color="white" buttonStyle={styles.button} title='GO'/>
           
         </View>
       </View>
