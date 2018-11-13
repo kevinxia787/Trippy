@@ -1,10 +1,19 @@
 import React, { Component } from 'react';
-import { View, TouchableHighlight, Text, StyleSheet } from 'react-native';
+import { View, TouchableHighlight, Text, StyleSheet, Platform } from 'react-native';
 import { CardViewWithIcon } from 'react-native-simple-card-view'
 
 import IconFA from 'react-native-vector-icons/MaterialCommunityIcons';
 
 export default class CategoryMenu extends Component {
+  static navigationOptions = {
+    title: "Categories",
+    headerTitleStyle: {
+      fontWeight: 'normal',
+      flex: 1,
+      fontFamily: (Platform.OS === 'ios') ? 'Avenir' : 'normal',
+    }
+  }
+
   render() {
     return (
       <View style={styles.container}>

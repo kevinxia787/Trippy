@@ -3,10 +3,6 @@ import { View, Text, TextInput, StyleSheet, Platform} from 'react-native';
 import { Button } from 'react-native-elements';
 
 
-// fonts
-import { sanFranciscoWeights, robotoWeights } from 'react-native-typography'
-
-
 export default class Landing extends React.Component {
   constructor(props) {
     super(props);
@@ -19,7 +15,6 @@ export default class Landing extends React.Component {
     title: "Trippy",
     headerTitleStyle: {
       fontWeight: 'normal',
-      textAlign: 'center',
       flex: 1,
       fontFamily: (Platform.OS === 'ios') ? 'Avenir' : 'normal',
     }
