@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { View, TouchableHighlight, Text, StyleSheet, Platform } from 'react-native';
 import { CardViewWithIcon } from 'react-native-simple-card-view'
+import Swiper from 'react-native-swiper';
+
 
 import IconFA from 'react-native-vector-icons/MaterialCommunityIcons';
 
@@ -16,44 +18,44 @@ export default class CategoryMenu extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
-        <TouchableHighlight style={styles.card}>
-          <View>
-            <IconFA name="food" size={50} color="#000"/>
+      <Swiper>
+        <TouchableHighlight style={styles.slide1}>
+          <View style={styles.center}>
+            <IconFA name="food" size={100} color="#000"/>
             <Text>Food/Drink</Text>
           </View>
         </TouchableHighlight>
-        <TouchableHighlight style={styles.card}>
-          <View>
-            <IconFA name="binoculars" size={50} color="#000"/>
+        <TouchableHighlight style={styles.slide2}>
+          <View style={styles.center}>
+            <IconFA name="binoculars" size={100} color="#000"/>
             <Text>Sights</Text>
           </View>
-        </TouchableHighlight>
-        <TouchableHighlight style={styles.card}>
-          <View>
-            <IconFA name="shopping" size={50} color="#000"/>
+        </TouchableHighlight >
+        <TouchableHighlight style={styles.slide3}>
+          <View style={styles.center}>
+            <IconFA name="shopping" size={100} color="#000"/>
             <Text>Shopping</Text>
           </View>
         </TouchableHighlight>
-        <TouchableHighlight style={styles.card}>
-          <View style={{alignItems: 'center'}}>
-            <IconFA name="tree" size={50} color="#000"/>
+        <TouchableHighlight style={styles.slide4}>
+          <View style={styles.center}>
+            <IconFA name="tree" size={100} color="#000"/>
             <Text>Outdoors</Text>
           </View>
         </TouchableHighlight>
-        <TouchableHighlight style={styles.card}>
-          <View>
-            <IconFA name="brush" size={50} color="#000"/>
+        <TouchableHighlight style={styles.slide5}>
+          <View style={styles.center}>
+            <IconFA name="brush" size={100} color="#000"/>
             <Text>Arts</Text>
           </View>
         </TouchableHighlight>
-        <TouchableHighlight style={styles.card}>
-          <View>
-            <IconFA name="help" size={50} color="#000"/>
+        <TouchableHighlight style={styles.slide6} >
+          <View style={styles.center}>
+            <IconFA name="help" size={100} color="#000"/>
             <Text>Random</Text>
           </View>
         </TouchableHighlight>
-      </View>
+      </Swiper>
     )
   }
 }
@@ -62,28 +64,49 @@ export default class CategoryMenu extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 5,
     flexDirection: 'row',
     flexWrap: 'wrap',
-    justifyContent: 'center', 
-    alignItems: 'center'
-  },
-  card: {
-    alignItems: 'center', 
+    
+  },  
+  center: {
+    flex: 1,
     justifyContent: 'center',
-    backgroundColor: "#DDDDDD",
-    padding: 5,
-    margin: 5,
-    width: '45%',
-    height: '32%',
-    borderRadius: 5,
+    alignItems: 'center',
   },
-  card2: {
-    alignItems: 'center', 
-    backgroundColor: "#DDDDDD",
-    padding: 5,
-    margin: 5,
-    width: '45%',
-    height: '30%',
+  slide1: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#D63230'
+  },
+  slide2: {
+    flex: 1, 
+    justifyContent: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#39A9DB'
+  },
+  slide3: {
+    flex: 1, 
+    justifyContent: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#F39237'
+  },
+  slide4: {
+    flex: 1, 
+    justifyContent: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#F9C80E'
+  },
+  slide5: {
+    flex: 1, 
+    justifyContent: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#5FAD56'
+  },
+  slide6: {
+    flex: 1, 
+    justifyContent: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#6457A6'
   }
 })
