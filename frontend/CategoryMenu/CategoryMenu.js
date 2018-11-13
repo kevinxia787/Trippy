@@ -4,7 +4,9 @@ import { CardViewWithIcon } from 'react-native-simple-card-view'
 import Swiper from 'react-native-swiper';
 
 
-import IconFA from 'react-native-vector-icons/MaterialCommunityIcons';
+import IconFA from 'react-native-vector-icons/FontAwesome';
+import Entypo from 'react-native-vector-icons/Entypo';
+import Material from 'react-native-vector-icons/MaterialCommunityIcons';
 
 export default class CategoryMenu extends Component {
   static navigationOptions = {
@@ -16,43 +18,55 @@ export default class CategoryMenu extends Component {
     }
   }
 
+  navigateToCards(category) {
+    this.props.navigate('Cards', {
+      location: category,
+    })
+  }
+
   render() {
     return (
       <Swiper>
         <TouchableHighlight style={styles.slide1}>
           <View style={styles.center}>
-            <IconFA name="food" size={100} color="#000"/>
-            <Text>Food/Drink</Text>
+            <Material name="food" size={100} color="#fff"/>
+            <Text style={{color: '#FFF'}}>Food</Text>
           </View>
         </TouchableHighlight>
         <TouchableHighlight style={styles.slide2}>
           <View style={styles.center}>
-            <IconFA name="binoculars" size={100} color="#000"/>
-            <Text>Sights</Text>
-          </View>
-        </TouchableHighlight >
-        <TouchableHighlight style={styles.slide3}>
-          <View style={styles.center}>
-            <IconFA name="shopping" size={100} color="#000"/>
-            <Text>Shopping</Text>
+            <Entypo name="drink" size={100} color="#fff"/>
+            <Text style={{color: '#FFF'}}>Drink</Text>
           </View>
         </TouchableHighlight>
+        <TouchableHighlight style={styles.slide3}>
+          <View style={styles.center}>
+            <IconFA name="binoculars" size={100} color="#fff"/>
+            <Text style={{color: '#FFF'}}>Sights</Text>
+          </View>
+        </TouchableHighlight >
         <TouchableHighlight style={styles.slide4}>
           <View style={styles.center}>
-            <IconFA name="tree" size={100} color="#000"/>
-            <Text>Outdoors</Text>
+            <Entypo name="shopping-cart" size={100} color="#fff"/>
+            <Text style={{color: '#FFF'}}>Shopping</Text>
           </View>
         </TouchableHighlight>
         <TouchableHighlight style={styles.slide5}>
           <View style={styles.center}>
-            <IconFA name="brush" size={100} color="#000"/>
-            <Text>Arts</Text>
+            <IconFA name="tree" size={100} color="#fff"/>
+            <Text style={{color: '#FFF'}}>Outdoors</Text>
           </View>
         </TouchableHighlight>
-        <TouchableHighlight style={styles.slide6} >
+        <TouchableHighlight style={styles.slide6}>
           <View style={styles.center}>
-            <IconFA name="help" size={100} color="#000"/>
-            <Text>Random</Text>
+            <IconFA name="paint-brush" size={100} color="#fff"/>
+            <Text style={{color: '#FFF'}}>Arts</Text>
+          </View>
+        </TouchableHighlight>
+        <TouchableHighlight style={styles.slide7} >
+          <View style={styles.center}>
+            <Entypo name="help" size={100} color="#fff"/>
+            <Text style={{color: '#FFF'}}>Random</Text>
           </View>
         </TouchableHighlight>
       </Swiper>
@@ -108,5 +122,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     justifyContent: 'center',
     backgroundColor: '#6457A6'
-  }
+  },
+  slide7: {
+    flex: 1, 
+    justifyContent: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#29339B'
+  },
 })

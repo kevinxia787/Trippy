@@ -8,7 +8,8 @@ import CategoryMenu from './CategoryMenu/CategoryMenu';
 
 const App = createStackNavigator({
   Home: {screen: Landing},
-  Categories: {screen: CategoryMenu}
+  Categories: {screen: CategoryMenu},
+  Cards: {screen: Cards}
 })
 
 export default App;
