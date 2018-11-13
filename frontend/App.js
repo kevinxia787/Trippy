@@ -12,6 +12,7 @@ const App = createStackNavigator({
   Cards: {screen: Cards}
 })
 
+
 export default App;
 
 

@@ -7,8 +7,12 @@ import Swiper from 'react-native-swiper';
 import IconFA from 'react-native-vector-icons/FontAwesome';
 import Entypo from 'react-native-vector-icons/Entypo';
 import Material from 'react-native-vector-icons/MaterialCommunityIcons';
+import Feather from 'react-native-vector-icons/Feather';
 
 export default class CategoryMenu extends Component {
+  constructor(props) {
+    super(props);
+  }
   static navigationOptions = {
     title: "Categories",
     headerTitleStyle: {
@@ -19,7 +23,7 @@ export default class CategoryMenu extends Component {
   }
 
   navigateToCards(category) {
-    this.props.navigate('Cards', {
+    this.props.navigation.navigate('Cards', {
       location: category,
     })
   }
@@ -27,46 +31,85 @@ export default class CategoryMenu extends Component {
   render() {
     return (
       <Swiper>
-        <TouchableHighlight style={styles.slide1}>
+        <TouchableHighlight onPress={() => {
+          this.props.navigation.navigate('Cards', {
+            category: 'food',
+          })
+        }} style={styles.slide1}>
           <View style={styles.center}>
             <Material name="food" size={100} color="#fff"/>
             <Text style={{color: '#FFF'}}>Food</Text>
           </View>
         </TouchableHighlight>
-        <TouchableHighlight style={styles.slide2}>
+        <TouchableHighlight onPress={() => {
+          this.props.navigation.navigate('Cards', {
+            category: 'drink',
+          })
+        }}
+          style={styles.slide2}>
           <View style={styles.center}>
             <Entypo name="drink" size={100} color="#fff"/>
             <Text style={{color: '#FFF'}}>Drink</Text>
           </View>
         </TouchableHighlight>
-        <TouchableHighlight style={styles.slide3}>
+        <TouchableHighlight onPress={() => {
+          this.props.navigation.navigate('Cards', {
+            category: 'sights'
+          })
+        }} style={styles.slide3}>
           <View style={styles.center}>
             <IconFA name="binoculars" size={100} color="#fff"/>
             <Text style={{color: '#FFF'}}>Sights</Text>
           </View>
         </TouchableHighlight >
-        <TouchableHighlight style={styles.slide4}>
+        <TouchableHighlight onPress={() => {
+          this.props.navigation.navigate('Cards', {
+            category: 'shopping',
+          })
+        }} style={styles.slide4}>
           <View style={styles.center}>
             <Entypo name="shopping-cart" size={100} color="#fff"/>
             <Text style={{color: '#FFF'}}>Shopping</Text>
           </View>
         </TouchableHighlight>
-        <TouchableHighlight style={styles.slide5}>
+        <TouchableHighlight onPress={() => {
+          this.props.navigation.navigate('Cards', {
+            category: 'outdoors',
+          })
+        }} style={styles.slide5}>
           <View style={styles.center}>
             <IconFA name="tree" size={100} color="#fff"/>
             <Text style={{color: '#FFF'}}>Outdoors</Text>
           </View>
         </TouchableHighlight>
-        <TouchableHighlight style={styles.slide6}>
+        <TouchableHighlight onPress={() => {
+          this.props.navigation.navigate('Cards', {
+            category: 'arts',
+          })
+        }} style={styles.slide6}>
           <View style={styles.center}>
             <IconFA name="paint-brush" size={100} color="#fff"/>
             <Text style={{color: '#FFF'}}>Arts</Text>
           </View>
         </TouchableHighlight>
-        <TouchableHighlight style={styles.slide7} >
+        <TouchableHighlight onPress={() => {
+          this.props.navigation.navigate('Cards', {
+            category: 'trending'
+          })
+        }} style={styles.slide7} >
           <View style={styles.center}>
-            <Entypo name="help" size={100} color="#fff"/>
-            <Text style={{color: '#FFF'}}>Random</Text>
+            <Feather name="trending-up" size={100} color="#fff"/>
+            <Text style={{color: '#FFF'}}>Trending</Text>
+          </View>
+        </TouchableHighlight>
+        <TouchableHighlight onPress={() => {
+          this.props.navigation.navigate('Cards', {
+            category: 'topPicks'
+          })
+        }} style={styles.slide8} >
+          <View style={styles.center}>
+            <Entypo name="trophy" size={100} color="#fff"/>
+            <Text style={{color: '#FFF'}}>Trending</Text>
           </View>
         </TouchableHighlight>
       </Swiper>
@@ -128,5 +171,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     justifyContent: 'center',
     backgroundColor: '#29339B'
+  },
+  slide8: {
+    flex: 1, 
+    justifyContent: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#736CED'
   },
 })
