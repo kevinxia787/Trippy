@@ -22,18 +22,13 @@ export default class CategoryMenu extends Component {
     }
   }
 
-  navigateToCards(category) {
-    this.props.navigation.navigate('Cards', {
-      location: category,
-    })
-  }
-
   render() {
     return (
       <Swiper>
         <TouchableHighlight onPress={() => {
           this.props.navigation.navigate('Cards', {
             category: 'food',
+            location: this.props.navigation.state.params.location
           })
         }} style={styles.slide1}>
           <View style={styles.center}>
@@ -44,6 +39,7 @@ export default class CategoryMenu extends Component {
         <TouchableHighlight onPress={() => {
           this.props.navigation.navigate('Cards', {
             category: 'drink',
+            location: this.props.navigation.state.params.location
           })
         }}
           style={styles.slide2}>
@@ -54,7 +50,8 @@ export default class CategoryMenu extends Component {
         </TouchableHighlight>
         <TouchableHighlight onPress={() => {
           this.props.navigation.navigate('Cards', {
-            category: 'sights'
+            category: 'sights',
+            location: this.props.navigation.state.params.location
           })
         }} style={styles.slide3}>
           <View style={styles.center}>
@@ -65,6 +62,7 @@ export default class CategoryMenu extends Component {
         <TouchableHighlight onPress={() => {
           this.props.navigation.navigate('Cards', {
             category: 'shopping',
+            location: this.props.navigation.state.params.location
           })
         }} style={styles.slide4}>
           <View style={styles.center}>
@@ -75,6 +73,7 @@ export default class CategoryMenu extends Component {
         <TouchableHighlight onPress={() => {
           this.props.navigation.navigate('Cards', {
             category: 'outdoors',
+            location: this.props.navigation.state.params.location
           })
         }} style={styles.slide5}>
           <View style={styles.center}>
@@ -85,6 +84,7 @@ export default class CategoryMenu extends Component {
         <TouchableHighlight onPress={() => {
           this.props.navigation.navigate('Cards', {
             category: 'arts',
+            location: this.props.navigation.state.params.location
           })
         }} style={styles.slide6}>
           <View style={styles.center}>
@@ -94,7 +94,8 @@ export default class CategoryMenu extends Component {
         </TouchableHighlight>
         <TouchableHighlight onPress={() => {
           this.props.navigation.navigate('Cards', {
-            category: 'trending'
+            category: 'trending',
+            location: this.props.navigation.state.params.location
           })
         }} style={styles.slide7} >
           <View style={styles.center}>
@@ -104,7 +105,8 @@ export default class CategoryMenu extends Component {
         </TouchableHighlight>
         <TouchableHighlight onPress={() => {
           this.props.navigation.navigate('Cards', {
-            category: 'topPicks'
+            category: 'topPicks',
+            location: this.props.navigation.state.params.location
           })
         }} style={styles.slide8} >
           <View style={styles.center}>
