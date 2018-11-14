@@ -68,6 +68,7 @@ export default class Cards extends React.Component {
          * Card is selected, need to figure out how to add location's address to the map view
          */
         if (gestureState.dx > 120) {
+          console.log(Users[this.state.currentIndex].id);
           Animated.spring(this.position, {
             toValue: {x: SCREEN_WIDTH + 100, y: gestureState.dy}
           }).start(() => {
@@ -96,8 +97,6 @@ export default class Cards extends React.Component {
   }
 
   renderUsers = () => {
-
-    
 
     return Users.map((item, i) => {
       if ( i < this.state.currentIndex) {
