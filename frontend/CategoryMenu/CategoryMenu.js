@@ -58,7 +58,7 @@ export default class CategoryMenu extends Component {
           })
         }} style={styles.slide3}>
           <View style={styles.center}>
-            <IconFA name="binoculars" size={100} color="#fff"/>
+            <Material name="binoculars" size={100} color="#fff"/>
             <Text style={{color: '#FFF'}}>Sights</Text>
           </View>
         </TouchableHighlight >
@@ -109,7 +109,7 @@ export default class CategoryMenu extends Component {
         }} style={styles.slide8} >
           <View style={styles.center}>
             <Entypo name="trophy" size={100} color="#fff"/>
-            <Text style={{color: '#FFF'}}>Trending</Text>
+            <Text style={{color: '#FFF'}}>Top Picks</Text>
           </View>
         </TouchableHighlight>
       </Swiper>
