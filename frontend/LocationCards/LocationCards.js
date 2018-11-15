@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, TouchableHighlight, Platform} from 'react-nativ
 
 import Swiper from 'react-native-swiper';
 
+
 export default class LocationCards extends Component {
 
   static navigationOptions = {
@@ -12,6 +13,9 @@ export default class LocationCards extends Component {
       flex: 1,
       fontFamily: (Platform.OS === 'ios') ? 'Avenir' : 'normal',
     }
+  }
+
+  componentDidMount() {
   }
 
   render(){

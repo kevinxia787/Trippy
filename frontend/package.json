@@ -9,6 +9,7 @@
     "eject": "expo eject"
   },
   "dependencies": {
+    "babel-preset-expo": "^5.0.0",
     "expo": "^31.0.5",
     "react": "^16.6.3",
     "react-native": "https://github.com/expo/react-native/archive/sdk-31.0.0.tar.gz",
