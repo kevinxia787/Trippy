@@ -15,9 +15,6 @@ export default class LocationCards extends Component {
     }
   }
 
-  componentDidMount() {
-  }
-
   render(){
     console.log(this.props.navigation.state.params);
     return (
