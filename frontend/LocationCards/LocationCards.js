@@ -3,8 +3,27 @@ import { StyleSheet, Text, View, TouchableHighlight, Platform} from 'react-nativ
 
 import Swiper from 'react-native-swiper';
 
+import { fetchVenues } from '../services/FetchVenues'
 
 export default class LocationCards extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      venues: [],
+      location: "40.730610%2C%20-73.935242"
+    }
+  }
+
+  componentDidMount() {
+    const { location } = this.state;
+    const category = this.props.navigation.state.params.category;
+    fetchVenues(location, category)
+      .then((res) => {
+        console.log(res);
+      }).catch((err) => {
+        console.log(err);
+      })
+  }
 
   static navigationOptions = {
     title: "Locations",
