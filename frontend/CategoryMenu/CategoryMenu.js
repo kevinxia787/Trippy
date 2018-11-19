@@ -38,7 +38,7 @@ export default class CategoryMenu extends Component {
         </TouchableHighlight>
         <TouchableHighlight onPress={() => {
           this.props.navigation.navigate('Cards', {
-            category: 'drink',
+            category: 'drinks',
             location: this.props.navigation.state.params.location
           })
         }}
@@ -61,7 +61,7 @@ export default class CategoryMenu extends Component {
         </TouchableHighlight >
         <TouchableHighlight onPress={() => {
           this.props.navigation.navigate('Cards', {
-            category: 'shopping',
+            category: 'shops',
             location: this.props.navigation.state.params.location
           })
         }} style={styles.slide4}>
