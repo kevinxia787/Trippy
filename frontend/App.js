@@ -2,7 +2,6 @@ import React from 'react';
 import { View, Platform, StyleSheet } from 'react-native';
 import { createStackNavigator } from 'react-navigation';
 
-import Cards from './Cards/Cards';
 import Landing from './Landing/Landing';
 import CategoryMenu from './CategoryMenu/CategoryMenu';
 import LocationCards from './LocationCards/LocationCards';

@@ -29,8 +29,8 @@ app.listen(port,
 async function getPhotoAPI(venueId){
     try {
         let first = await fetch('https://api.foursquare.com/v2/venues/' + venueId + '/photos' + '?client_' +
-            'id=' + process.env.CLIENT_ID2 + '&client_secret' +
-            '=' + process.env.CLIENT_SECRET2 + '&v=20180323');
+            'id=' + process.env.CLIENT_ID + '&client_secret' +
+            '=' + process.env.CLIENT_SECRET + '&v=20180323');
         let second = await first.json();
         let prefix = second['response']['photos']['items'][0]['prefix'];
         let suffix = second['response']['photos']['items'][0]['suffix'];
@@ -49,8 +49,8 @@ async function getPhotoAPI(venueId){
 async function getDetailAPI(venueId){
     try {
         let first = await fetch('https://api.foursquare.com/v2/venues/' + venueId + '?client_' +
-            'id=' + process.env.CLIENT_ID2 + '&client_secret' +
-            '=' + process.env.CLIENT_SECRET2 + '&v=20180323');
+            'id=' + process.env.CLIENT_ID + '&client_secret' +
+            '=' + process.env.CLIENT_SECRET + '&v=20180323');
         let second = await first.json();
         let contact = second['response']['venue']['contact'];
         let hours = second['response']['venue']['hours'];
@@ -71,11 +71,11 @@ function getVenueAPI(user_location,section) {
             url: 'https://api.foursquare.com/v2/venues/explore',
             method: 'GET',
             qs: {
-                client_id: process.env.CLIENT_ID2,
-                client_secret: process.env.CLIENT_SECRET2,
+                client_id: process.env.CLIENT_ID,
+                client_secret: process.env.CLIENT_SECRET,
                 ll: user_location,
                 section: section,
-                limit: 5,
+                limit: 10,
                 v: '20180323'
             }
         },function (error, response, body) {
@@ -108,8 +108,8 @@ app.get("/:user_location/:section", (req, res) => {
                 let lat = venue['location']['lat'];
                 let lng = venue['location']['lng'];
                 let dist = venue['location']['distance'];
-                let photo_url = await getPhotoAPI(venueId);
-                let detail = await getDetailAPI(venueId);
+                // let photo_url = await getPhotoAPI(venueId);
+                // let detail = await getDetailAPI(venueId);
                 return {
                     Id: venueId,
                     name: name,
@@ -117,10 +117,10 @@ app.get("/:user_location/:section", (req, res) => {
                     latitude: lat,
                     longitude: lng,
                     distance: dist,
-                    photo_url: photo_url,
-                    open_hours: detail[1],
-                    contact: detail[0],
-                    description:detail[2]
+                    // photo_url: photo_url,
+                    // open_hours: detail[1],
+                    // contact: detail[0],
+                    // description:detail[2]
                 };
             }));
             res.send(myList)

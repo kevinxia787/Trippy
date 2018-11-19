@@ -17,9 +17,10 @@ export default class LocationCards extends Component {
   componentDidMount() {
     const { location } = this.state;
     const category = this.props.navigation.state.params.category;
+    console.log("category: ", category);
     fetchVenues(location, category)
       .then((res) => {
-        console.log(res);
+        this.setState({venues: res})
       }).catch((err) => {
         console.log(err);
       })
@@ -34,20 +35,19 @@ export default class LocationCards extends Component {
     }
   }
 
+  
+
   render(){
-    console.log(this.props.navigation.state.params);
+    const { venues } = this.state;
     return (
       <Swiper dot={<View style={{opacity:0}}/>} activeDot={<View style={{opacity: 0}}/>} showsButtons={false}>
-        <TouchableHighlight>
-          <View>
-            <Text>{this.props.navigation.state.params.category}</Text>
-          </View>
-        </TouchableHighlight>
-        <TouchableHighlight>
-          <View>
-            <Text>{this.props.navigation.state.params.location}</Text>
-          </View>
-        </TouchableHighlight>
+        {venues.map(venues => {
+          return (
+            <TouchableHighlight key={venues.Id}>
+              <Text>{venues.name}</Text>
+            </TouchableHighlight>
+          )
+        })}
       </Swiper>
     );
   }
