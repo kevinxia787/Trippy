@@ -1,20 +1,29 @@
 import React, { Component } from 'react';
-import { View, Platform, StyleSheet} from 'react-native';
+import { View, Platform, StyleSheet, Alert } from 'react-native';
 
 import { fetchVenues } from '../services/FetchVenues'
-import { Button } from 'react-native-elements';
 import Carousel from 'react-native-snap-carousel';
 import SliderEntry from './SliderEntry';
 
 import styles from './LocationCards.style';
 import { sliderWidth, itemWidth } from './SliderEntry.style';
+import { Button, ButtonGroup } from 'react-native-elements';
 
 export default class LocationCards extends Component {
   constructor(props) {
     super(props);
     this.state = {
       venues: [],
-      location: "40.730610%2C%20-73.935242"
+      location: "40.730610%2C%20-73.935242",
+      currentIndex: 0,
+    }
+  }
+  static navigationOptions = {
+    title: "Locations",
+    headerTitleStyle: {
+      fontWeight: 'normal',
+      flex: 1,
+      fontFamily: (Platform.OS === 'ios') ? 'Avenir' : 'normal',
     }
   }
 
@@ -50,47 +59,45 @@ export default class LocationCards extends Component {
       }).catch((err) => {
         console.log(err);
       })
-  
 
   }
 
-  static navigationOptions = {
-    title: "Locations",
-    headerTitleStyle: {
-      fontWeight: 'normal',
-      flex: 1,
-      fontFamily: (Platform.OS === 'ios') ? 'Avenir' : 'normal',
-    }
+  changeIndex = (currentIndex) => {
+    this.setState({ currentIndex });
   }
 
-  _renderItem ({item, index}) {
+  renderItem ({item, index}) {
     return (
-      <SliderEntry data={item} even={true} />
+      <SliderEntry index={index} data={item} navigation={this.props.navigation} even={true} />
     )
   }
-
   
+  
+  // Probably should use button group instead for the buttons 
 
   render(){
-    const { venues } = this.state;
-    console.log(itemWidth);
+    const { venues, currentIndex } = this.state;
+    console.log(currentIndex);
+    console.log(venues);
     return (
       <View style={[styles.exampleContainer]}>
         <Carousel
           ref={(c) => { this._carousel = c; }}
           data={venues}
-          renderItem={this._renderItem}
+          renderItem={this.renderItem}
           sliderWidth={sliderWidth}
           containerCustomStyle={styles.slider}
           contentContainerCustomStyle={styles.sliderContentContainer}
           itemWidth={itemWidth}
           layout={'stack'}
+          onSnapToItem={this.changeIndex}
         />
 
         <View style={stylesheet.buttonContainer}>
-          <Button borderRadius={5} style={stylesheet.button} title='NO'/>
-          <Button style={stylesheet.button} title='GO'/>
+          <Button onPress={this.getCurrentCarouselItem} buttonStyle={stylesheet.buttonStyle} borderRadius={5} large title="NO"/>
+          <Button buttonStyle={stylesheet.buttonStyle} borderRadius={5} large title="GO!"/>
         </View>
+
       </View>
       
     )
@@ -101,11 +108,15 @@ export default class LocationCards extends Component {
 const stylesheet = StyleSheet.create({
   buttonContainer: {
     display: 'flex',
-    flexDirection: 'row'
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: -20,
   },
-  button: {
-    borderRadius: 5,
 
+  buttonStyle: {
+    width: 170,
+    height: 50
   }
 
 })

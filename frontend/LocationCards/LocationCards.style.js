@@ -23,7 +23,7 @@ export default StyleSheet.create({
         flex: 1
     },
     exampleContainer: {
-        paddingVertical: 30,
+        paddingVertical: 70,
         height: '100%',
 
     },

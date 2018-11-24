@@ -34,6 +34,8 @@ export default class SliderEntry extends Component {
         );
     }
 
+    // Here we handle adding location to the map (TODO)
+
     render () {
         const { data: { name, address } } = this.props;
         return (
