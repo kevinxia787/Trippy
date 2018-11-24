@@ -88,8 +88,8 @@ export default class LocationCards extends Component {
         />
 
         <View style={stylesheet.buttonContainer}>
-          <Button title='NO'/>
-          <Button title='GO'/>
+          <Button borderRadius={5} style={stylesheet.button} title='NO'/>
+          <Button style={stylesheet.button} title='GO'/>
         </View>
       </View>
       
@@ -102,6 +102,10 @@ const stylesheet = StyleSheet.create({
   buttonContainer: {
     display: 'flex',
     flexDirection: 'row'
+  },
+  button: {
+    borderRadius: 5,
 
   }
+
 })
