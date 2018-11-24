@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Platform, StyleSheet, Alert } from 'react-native';
+import { View, Platform, StyleSheet } from 'react-native';
 
 import { fetchVenues } from '../services/FetchVenues'
 import Carousel from 'react-native-snap-carousel';
@@ -30,12 +30,10 @@ export default class LocationCards extends Component {
   componentDidMount() {
     const { location } = this.state;
     const category = this.props.navigation.state.params.category;
-    console.log("category: ", category);
     // Fetch Express Get route
     fetchVenues(location, category)
       .then((venue) => {
         // Generate 10 random indexes between [0, 50)
-        console.log('venue length', venue.length);
         var venueEntry = [];
         var randomIndex = [];
         for (let i = 0; i < 10; i++) {
@@ -66,11 +64,6 @@ export default class LocationCards extends Component {
     this.setState({ currentIndex });
   }
 
-  renderItem ({item, index}) {
-    return (
-      <SliderEntry index={index} data={item} navigation={this.props.navigation} even={true} />
-    )
-  }
   
   
   // Probably should use button group instead for the buttons 
@@ -78,13 +71,16 @@ export default class LocationCards extends Component {
   render(){
     const { venues, currentIndex } = this.state;
     console.log(currentIndex);
-    console.log(venues);
     return (
       <View style={[styles.exampleContainer]}>
         <Carousel
           ref={(c) => { this._carousel = c; }}
           data={venues}
-          renderItem={this.renderItem}
+          renderItem={({item, index}) => {
+            return (
+              <SliderEntry navigation={this.props.navigation} index={index} data={item} even={true}/>
+            )
+          }}
           sliderWidth={sliderWidth}
           containerCustomStyle={styles.slider}
           contentContainerCustomStyle={styles.sliderContentContainer}
@@ -94,8 +90,8 @@ export default class LocationCards extends Component {
         />
 
         <View style={stylesheet.buttonContainer}>
-          <Button onPress={this.getCurrentCarouselItem} buttonStyle={stylesheet.buttonStyle} borderRadius={5} large title="NO"/>
-          <Button buttonStyle={stylesheet.buttonStyle} borderRadius={5} large title="GO!"/>
+          <Button onPress={this.noHandler} titleStyle={stylesheet.buttonTitle} buttonStyle={stylesheet.buttonStyle} borderRadius={5} large title="NO"/>
+          <Button onPress={this.noHandler} titleStyle={stylesheet.buttonTitle} buttonStyle={stylesheet.buttonStyle} borderRadius={5} large title="GO!"/>
         </View>
 
       </View>
@@ -116,7 +112,11 @@ const stylesheet = StyleSheet.create({
 
   buttonStyle: {
     width: 170,
-    height: 50
+    height: 50,
+  },
+
+  buttonTitle: {
+    fontFamily: (Platform.OS === 'ios') ? 'Avenir' : 'normal'
   }
 
 })
