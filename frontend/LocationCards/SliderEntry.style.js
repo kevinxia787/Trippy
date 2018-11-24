@@ -10,13 +10,15 @@ function wp (percentage) {
 }
 
 // Slide style
-const slideHeight = viewportHeight * 0.4;
+const slideHeight = viewportHeight * 0.45;
 const slideWidth = wp(75);
 const itemHorizontalMargin = wp(2);
 
 // Carousel props
 export const sliderWidth = viewportWidth;
-export const itemWidth = slideWidth + itemHorizontalMargin * 2;
+export const itemWidth = slideWidth + itemHorizontalMargin * 5;
+
+
 
 const entryBorderRadius = 8;
 

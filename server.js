@@ -75,7 +75,7 @@ function getVenueAPI(user_location,section) {
                 client_secret: process.env.CLIENT_SECRET,
                 ll: user_location,
                 section: section,
-                limit: 10,
+                limit: 50,
                 v: '20180323'
             }
         },function (error, response, body) {

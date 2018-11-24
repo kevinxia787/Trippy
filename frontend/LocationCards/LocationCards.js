@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, TouchableHighlight, Platform, Dimensions} from 'react-native';
-
-import Swiper from 'react-native-swiper';
+import { View, Platform, StyleSheet} from 'react-native';
 
 import { fetchVenues } from '../services/FetchVenues'
+import { Button } from 'react-native-elements';
 import Carousel from 'react-native-snap-carousel';
 import SliderEntry from './SliderEntry';
 
@@ -27,20 +26,18 @@ export default class LocationCards extends Component {
     fetchVenues(location, category)
       .then((venue) => {
         // Generate 10 random indexes between [0, 50)
+        console.log('venue length', venue.length);
         var venueEntry = [];
         var randomIndex = [];
         for (let i = 0; i < 10; i++) {
-          let tempIndex = Math.floor(Math.random() * (50 - 0) + 0);
+          let tempIndex = Math.floor(Math.random() * (venue.length - 0) + 0);
           randomIndex.push(tempIndex);
         }
 
         // Utilize 10 random indexes and grab venues
-        console.log("randomIndex", randomIndex)
 
         for (let i = 0; i < randomIndex.length; i++) {
           let tempObj = {};
-          console.log(randomIndex[i])
-          console.log(venue[15]);
           let entry = venue[randomIndex[i]];
           tempObj.name = entry.name;
           tempObj.id = entry.Id;
@@ -76,9 +73,9 @@ export default class LocationCards extends Component {
 
   render(){
     const { venues } = this.state;
-    console.log(venues);
+    console.log(itemWidth);
     return (
-      <View style={[styles.exampleContainer, styles.exampleContainerLight]}>
+      <View style={[styles.exampleContainer]}>
         <Carousel
           ref={(c) => { this._carousel = c; }}
           data={venues}
@@ -87,9 +84,24 @@ export default class LocationCards extends Component {
           containerCustomStyle={styles.slider}
           contentContainerCustomStyle={styles.sliderContentContainer}
           itemWidth={itemWidth}
+          layout={'stack'}
         />
+
+        <View style={stylesheet.buttonContainer}>
+          <Button title='NO'/>
+          <Button title='GO'/>
+        </View>
       </View>
       
     )
   }
 }
+
+
+const stylesheet = StyleSheet.create({
+  buttonContainer: {
+    display: 'flex',
+    flexDirection: 'row'
+
+  }
+})
