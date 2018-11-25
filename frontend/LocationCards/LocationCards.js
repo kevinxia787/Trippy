@@ -74,7 +74,7 @@ export default class LocationCards extends Component {
     return (
       <View style={[styles.exampleContainer]}>
         <Carousel
-          ref={(c) => { this._carousel = c; }}
+          ref={c => this._carousel = c}
           data={venues}
           renderItem={({item, index}) => {
             return (
@@ -90,8 +90,11 @@ export default class LocationCards extends Component {
         />
 
         <View style={stylesheet.buttonContainer}>
-          <Button onPress={this.noHandler} titleStyle={stylesheet.buttonTitle} buttonStyle={stylesheet.buttonStyle} borderRadius={5} large title="NO"/>
-          <Button onPress={this.noHandler} titleStyle={stylesheet.buttonTitle} buttonStyle={stylesheet.buttonStyle} borderRadius={5} large title="GO!"/>
+          <Button onPress={() => { this._carousel.snapToNext(); }} titleStyle={stylesheet.buttonTitle} buttonStyle={stylesheet.buttonStyle} borderRadius={5} large title="NO"/>
+          <Button onPress={() => { 
+            this.props.navigation.navigate('Map', {
+              destination: venues[currentIndex].address,
+            })}} titleStyle={stylesheet.buttonTitle} buttonStyle={stylesheet.buttonStyle} borderRadius={5} large title="GO!"/>
         </View>
 
       </View>

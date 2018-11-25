@@ -42,6 +42,11 @@ export default class SliderEntry extends Component {
             <TouchableOpacity
               activeOpacity={1}
               style={styles.slideInnerContainer}
+              onPress={() => {
+                this.props.navigation.navigate('Map', {
+                  destination: address,
+                })
+              }}
               >
                 <View style={styles.shadow} />
                 <View style={styles.imageContainer}>
