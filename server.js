@@ -4,6 +4,22 @@ const port = process.env.PORT || 3000;
 const request = require('request');
 const foursquare = require('./config.json');
 const fetch = require('node-fetch');
+const config = require("./firebase_config.json");
+const firebase = require("firebase");
+const dotenv =  require('dotenv');
+const bodyParser = require('body-parser');
+const admin = require("firebase-admin");
+const mbxDirections = require('@mapbox/mapbox-sdk/services/directions');
+const mboxToken = require('./mBox_config.json');
+const directionsClient = mbxDirections({ accessToken: mboxToken.accessToken});
+// app.use(bodyParser.urlencoded({extended : true}));
+app.use(bodyParser.json());
+
+
+firebase.initializeApp(config);
+
+let database = firebase.database();
+let auth = firebase.auth();
 
 // console log for server running
 app.listen(port,
@@ -18,6 +34,12 @@ app.listen(port,
     }
     });
 
+
+//connect to firebase
+
+
+
+
 // connect
 // boston geolocation = 42.361145, -71.057083
 
@@ -30,6 +52,7 @@ async function getPhotoAPI(venueId){
             'id=' + foursquare.CLIENT_ID + '&client_secret' +
             '=' + foursquare.CLIENT_SECRET + '&v=20180323');
         let second = await first.json();
+        console.log(second);
         let prefix = second['response']['photos']['items'][0]['prefix'];
         let suffix = second['response']['photos']['items'][0]['suffix'];
         let width = second['response']['photos']['items'][0]['width'];
@@ -76,6 +99,7 @@ function getVenueAPI(user_location,section) {
             }
         },function (error, response, body) {
             if (!error && response.statusCode === 200) {
+                console.log(body);
                 success(JSON.parse(body));
             } else {
                 failure(error);
@@ -83,8 +107,6 @@ function getVenueAPI(user_location,section) {
         });
     });
 }
-
-
 
 
 app.get("/:user_location/:section", (req, res) => {
@@ -122,6 +144,83 @@ app.get("/:user_location/:section", (req, res) => {
         console.log(err);
     }
     });
+
+app.post('/register', function(req,res) {
+    let req_obj = req.body;
+    let email = req_obj.email;
+    let password = req_obj.password;
+    auth.createUserWithEmailAndPassword(email, password).catch(function(error) {
+        // Handle Errors here.
+        let errorCode = error.code;
+        let errorMessage = error.message;
+        console.log(error.message);
+    });
+
+});
+
+
+app.post('/save_trip', function(req,res) {
+    let req_obj = req.body;
+    let uid = req_obj.uid;
+    let trips = req_obj.trips;
+    let date = req_obj.date;
+
+    database.ref('trips/').push().set({
+        uid: uid,
+        trips: trips,
+        date: date
+
+    });
+
+});
+
+app.get('/get_trip', function(req,res) {
+    let req_obj = req.body;
+    let uid = req_obj.uid;
+    let date = req_obj.date;
+    database.ref('trips/').push().set({
+        uid: uid,
+        trips: trips,
+        date: date
+
+    });
+
+});
+
+async function create_coordinates(points){
+    let coordinates = '';
+    for (i = 0; i < (points.length); i++) {
+        let lng1 = points[i].longitude;
+        let lat1 = points[i].latitude;
+        if (i+1 === points.length){
+            coordinates += lng1+','+lat1;
+        } else {
+            // let lng2 = points[i+1].longitude;
+            // let lat2 = points[i+1].latitude;
+            coordinates += lng1 + ',' + lat1 + ';';
+        }
+    }
+    return coordinates;
+}
+
+app.get('/get_directions',(req, res) =>{
+    let req_obj = req.body;
+    let points = req_obj.points;
+    create_coordinates(points).then(async function (coordinates){
+        try {
+            let first =  await fetch('https://api.mapbox.com/directions/v5/mapbox/walking/' + coordinates + '?geometries=geojson&access_token=' + mboxToken.accessToken);
+            let second = await first.json();
+            res.send(second);
+        }
+        catch (err) {
+            console.log(err)
+
+        }
+    })
+
+
+});
+
 
 
 // create a GET route
