@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-
 import { View, Text, Platform } from 'react-native';
+import { MapView } from 'expo';
 
-export default class MapView extends Component {
+
+export default class Map extends Component {
   constructor(props) {
     super(props);
 
@@ -19,8 +20,15 @@ export default class MapView extends Component {
 
   render() {
     return (
-      <View>
-        <Text>{this.props.navigation.state.params.destination}</Text>
+      <View> 
+        <MapView style={{ alignSelf: 'stretch', height: 300 }} 
+          initialRegion={{ 
+            latitude: 37.78825, 
+            longitude: -122.4324, 
+            latitudeDelta: 0.0922, 
+            longitudeDelta: 0.0421, 
+          }} 
+        /> 
       </View>
     )
   }

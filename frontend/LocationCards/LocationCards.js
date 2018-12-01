@@ -90,11 +90,11 @@ export default class LocationCards extends Component {
         />
 
         <View style={stylesheet.buttonContainer}>
-          <Button onPress={() => { this._carousel.snapToNext(); }} titleStyle={stylesheet.buttonTitle} buttonStyle={stylesheet.buttonStyle} borderRadius={5} large title="NO"/>
-          <Button onPress={() => { 
+          <Button large onPress={() => { this._carousel.snapToNext(); }} fontSize={(Platform.OS === 'ios' ? 13 : 18)} titleStyle={stylesheet.buttonTitle} buttonStyle={stylesheet.buttonStyle} borderRadius={5} large title="NO"/>
+          <Button large onPress={() => { 
             this.props.navigation.navigate('Map', {
               destination: venues[currentIndex].address,
-            })}} titleStyle={stylesheet.buttonTitle} buttonStyle={stylesheet.buttonStyle} borderRadius={5} large title="GO!"/>
+            })}} fontSize={(Platform.OS === 'ios' ? 13 : 18)} titleStyle={stylesheet.buttonTitle} buttonStyle={stylesheet.buttonStyle} borderRadius={5} large title="GO!"/>
         </View>
 
       </View>
@@ -110,7 +110,6 @@ const stylesheet = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: -20,
   },
 
   buttonStyle: {
@@ -119,7 +118,7 @@ const stylesheet = StyleSheet.create({
   },
 
   buttonTitle: {
-    fontFamily: (Platform.OS === 'ios') ? 'Avenir' : 'normal'
+    fontFamily: (Platform.OS === 'ios') ? 'Avenir' : 'normal',
   }
 
 })

@@ -5,13 +5,13 @@ import { createStackNavigator } from 'react-navigation';
 import Landing from './Landing/Landing';
 import CategoryMenu from './CategoryMenu/CategoryMenu';
 import LocationCards from './LocationCards/LocationCards';
-import MapView from './MapView/MapView';
+import Map from './Map/Map';
 
 const App = createStackNavigator({
   Home: {screen: Landing},
   Categories: {screen: CategoryMenu},
   Cards: {screen: LocationCards},
-  Map: {screen: MapView}
+  Map: {screen: Map}
 })
 
 
