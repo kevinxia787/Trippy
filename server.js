@@ -24,6 +24,7 @@ app.listen(port,
 //to test : http://127.0.0.1:3000/42.361145,%20-71.057083/food
 //Get Request
 
+// to test geocoding http://127.0.0.1:3000/Boston,%20MA
 
 
 async function getPhotoAPI(venueId){
@@ -65,6 +66,30 @@ async function getDetailAPI(venueId){
 
 }
 
+https://api.opencagedata.com/geocode/v1/json?key=e80bb90e4d5b495596e712e2703c2451&q=Frauenplan+1%2C+99423+Weimar%2C+Germany&pretty=1
+
+function getLatLng(address) {
+    return new Promise(function(success, failure) {
+        request({
+            url: 'https://api.opencagedata.com/geocode/v1/json',
+            method: 'GET',
+            qs: {
+                key: process.env.OPENCAGE_KEY,
+                q: address,
+            }
+        }, function(error, response, body) {
+            if (!error && response.statusCode === 200) {
+                success(JSON.parse(body));
+            } else {
+                failure(error);
+                console.log("error with geocoding");
+            }
+        });
+    }).catch((err) => {
+        console.log(err);
+    });
+}
+
 function getVenueAPI(user_location,section) {
     return new Promise(function (success, failure) {
         request({
@@ -92,7 +117,20 @@ function getVenueAPI(user_location,section) {
 }
 
 
-
+app.get("/:address", (req, res) => {
+    try {
+        const address = req.params.address;
+        getLatLng(address).then(async function (body1) {
+            console.log(body1);
+            res.send(body1.results[0].geometry);
+        }).catch((err) => {
+            console.log(err);
+        })
+    } catch (err) {
+        console.log("err");
+        console.log("error with geocoding route");
+    }
+})
 
 app.get("/:user_location/:section", (req, res) => {
     try {
