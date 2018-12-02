@@ -14,7 +14,6 @@ export default class LocationCards extends Component {
     super(props);
     this.state = {
       venues: [],
-      location: "40.730610%2C%20-73.935242",
       currentIndex: 0,
     }
   }
@@ -28,7 +27,8 @@ export default class LocationCards extends Component {
   }
 
   componentDidMount() {
-    const { location } = this.state;
+    const location = this.props.navigation.state.params.location;
+    console.log(location);
     const category = this.props.navigation.state.params.category;
     // Fetch Express Get route
     fetchVenues(location, category)

@@ -172,6 +172,3 @@ app.get("/:user_location/:section", (req, res) => {
     });
 
 
-app.get("/", (req, res) => {
-    res.send("hello")
-});

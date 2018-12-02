@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { View, TouchableHighlight, Text, StyleSheet, Platform } from 'react-native';
 import { CardViewWithIcon } from 'react-native-simple-card-view'
+import { fetchLatLng } from '../services/FetchLatLng'
+
 import Swiper from 'react-native-swiper';
-
-
 import IconFA from 'react-native-vector-icons/FontAwesome';
 import Entypo from 'react-native-vector-icons/Entypo';
 import Material from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -12,7 +12,12 @@ import Feather from 'react-native-vector-icons/Feather';
 export default class CategoryMenu extends Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      latLng: '',
+    }
   }
+  
   static navigationOptions = {
     title: "Categories",
     headerTitleStyle: {
@@ -22,13 +27,28 @@ export default class CategoryMenu extends Component {
     }
   }
 
+  // Call the geocoding api here to convert this.state.latLng to lat lng
+  componentDidMount() {
+    const address = this.props.navigation.state.params.location;
+    fetchLatLng(address)
+      .then((result) => {
+        let lat = result.lat;
+        let lng = result.lng;
+        let latlng = lat + ', ' + lng;
+        this.setState({latLng: latlng});
+      }).catch((err) => {
+        console.log(err);
+      });
+  }
+
   render() {
+    const {latLng } = this.state;
     return (
       <Swiper>
         <TouchableHighlight onPress={() => {
           this.props.navigation.navigate('Cards', {
             category: 'food',
-            location: this.props.navigation.state.params.location
+            location: latLng
           })
         }} style={styles.slide1}>
           <View style={styles.center}>
@@ -39,7 +59,7 @@ export default class CategoryMenu extends Component {
         <TouchableHighlight onPress={() => {
           this.props.navigation.navigate('Cards', {
             category: 'drinks',
-            location: this.props.navigation.state.params.location
+            location: latLng
           })
         }}
           style={styles.slide2}>
@@ -51,7 +71,7 @@ export default class CategoryMenu extends Component {
         <TouchableHighlight onPress={() => {
           this.props.navigation.navigate('Cards', {
             category: 'sights',
-            location: this.props.navigation.state.params.location
+            location: latLng
           })
         }} style={styles.slide3}>
           <View style={styles.center}>
@@ -62,7 +82,7 @@ export default class CategoryMenu extends Component {
         <TouchableHighlight onPress={() => {
           this.props.navigation.navigate('Cards', {
             category: 'shops',
-            location: this.props.navigation.state.params.location
+            location: latLng
           })
         }} style={styles.slide4}>
           <View style={styles.center}>
@@ -73,7 +93,7 @@ export default class CategoryMenu extends Component {
         <TouchableHighlight onPress={() => {
           this.props.navigation.navigate('Cards', {
             category: 'outdoors',
-            location: this.props.navigation.state.params.location
+            location: latLng
           })
         }} style={styles.slide5}>
           <View style={styles.center}>
@@ -84,7 +104,7 @@ export default class CategoryMenu extends Component {
         <TouchableHighlight onPress={() => {
           this.props.navigation.navigate('Cards', {
             category: 'arts',
-            location: this.props.navigation.state.params.location
+            location: latLng
           })
         }} style={styles.slide6}>
           <View style={styles.center}>
@@ -95,7 +115,7 @@ export default class CategoryMenu extends Component {
         <TouchableHighlight onPress={() => {
           this.props.navigation.navigate('Cards', {
             category: 'trending',
-            location: this.props.navigation.state.params.location
+            location: latLng
           })
         }} style={styles.slide7} >
           <View style={styles.center}>
@@ -106,7 +126,7 @@ export default class CategoryMenu extends Component {
         <TouchableHighlight onPress={() => {
           this.props.navigation.navigate('Cards', {
             category: 'topPicks',
-            location: this.props.navigation.state.params.location
+            location: latLng
           })
         }} style={styles.slide8} >
           <View style={styles.center}>
