@@ -164,6 +164,7 @@ app.get("/directions/:start/:dest", (req, res) => {
 app.get("/geocoding/:address", (req, res) => {
     try {
         const address = req.params.address;
+        console.log(address);
         getLatLng(address).then(async function (body1) {
             console.log(body1);
             res.send(body1.results[0].geometry);

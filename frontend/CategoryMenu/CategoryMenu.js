@@ -31,6 +31,7 @@ export default class CategoryMenu extends Component {
   // Call the geocoding api here to convert this.state.latLng to lat lng
   componentDidMount() {
     const address = this.props.navigation.state.params.location;
+    console.log('debug', address);
     fetchLatLng(address)
       .then((result) => {
         let lat = result.lat;
@@ -51,7 +52,7 @@ export default class CategoryMenu extends Component {
             <TouchableHighlight onPress={() => {
               this.props.navigation.navigate('Cards', {
                 category: 'food',
-                location: latLng
+                startLocation: latLng
               })
             }} style={styles.slide1}>
               <View style={styles.center}>
@@ -65,7 +66,7 @@ export default class CategoryMenu extends Component {
             <TouchableHighlight onPress={() => {
               this.props.navigation.navigate('Cards', {
                 category: 'drinks',
-                location: latLng
+                startLocation: latLng
               })
             }}
               style={styles.slide2}>
@@ -81,7 +82,7 @@ export default class CategoryMenu extends Component {
             <TouchableHighlight onPress={() => {
               this.props.navigation.navigate('Cards', {
                 category: 'sights',
-                location: latLng
+                startLocation: latLng
               })
             }} style={styles.slide3}>
               <View style={styles.center}>
@@ -94,7 +95,7 @@ export default class CategoryMenu extends Component {
             <TouchableHighlight onPress={() => {
               this.props.navigation.navigate('Cards', {
                 category: 'shops',
-                location: latLng
+                startLocation: latLng
               })
             }} style={styles.slide4}>
               <View style={styles.center}>
@@ -109,7 +110,7 @@ export default class CategoryMenu extends Component {
             <TouchableHighlight onPress={() => {
               this.props.navigation.navigate('Cards', {
                 category: 'outdoors',
-                location: latLng
+                startLocation: latLng
               })
             }} style={styles.slide5}>
               <View style={styles.center}>
@@ -123,7 +124,7 @@ export default class CategoryMenu extends Component {
             <TouchableHighlight onPress={() => {
               this.props.navigation.navigate('Cards', {
                 category: 'arts',
-                location: latLng
+                startLocation: latLng
               })
             }} style={styles.slide6}>
               <View style={styles.center}>
@@ -139,7 +140,7 @@ export default class CategoryMenu extends Component {
             <TouchableHighlight onPress={() => {
               this.props.navigation.navigate('Cards', {
                 category: 'topPicks',
-                location: latLng
+                startLocation: latLng
               })
             }} style={styles.slide8} >
               <View style={styles.center}>
@@ -153,7 +154,7 @@ export default class CategoryMenu extends Component {
             <TouchableHighlight onPress={() => {
               this.props.navigation.navigate('Cards', {
                 category: 'trending',
-                location: latLng
+                startLocation: latLng
               })
             }} style={styles.slide7} >
               <View style={styles.center}>

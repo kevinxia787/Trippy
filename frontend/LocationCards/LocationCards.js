@@ -8,6 +8,7 @@ import SliderEntry from './SliderEntry';
 import styles from './LocationCards.style';
 import { sliderWidth, itemWidth } from './SliderEntry.style';
 import { Button, ButtonGroup } from 'react-native-elements';
+import { fetchLatLng } from '../services/FetchLatLng';
 
 export default class LocationCards extends Component {
   constructor(props) {
@@ -27,7 +28,7 @@ export default class LocationCards extends Component {
   }
 
   componentDidMount() {
-    const location = this.props.navigation.state.params.location;
+    const location = this.props.navigation.state.params.startLocation;
     console.log(location);
     const category = this.props.navigation.state.params.category;
     // Fetch Express Get route
@@ -49,7 +50,7 @@ export default class LocationCards extends Component {
           tempObj.name = entry.name;
           tempObj.id = entry.Id;
           tempObj.address = entry.address[0] + "\n" + entry.address[1] + "\n" + entry.address[2];
-          tempObj.latLng = entry.latitude + "%2C%20" + entry.longitude;
+          tempObj.latLng = entry.latitude + "," + entry.longitude;
           tempObj.illustration = 'https://m.static.lagardere.cz/evropa2/image/2018/04/mc1.jpg';
           venueEntry.push(tempObj);
         }
@@ -63,10 +64,6 @@ export default class LocationCards extends Component {
   changeIndex = (currentIndex) => {
     this.setState({ currentIndex });
   }
-
-  
-  
-  // Probably should use button group instead for the buttons 
 
   render(){
     const { venues, currentIndex } = this.state;
@@ -94,6 +91,8 @@ export default class LocationCards extends Component {
           <Button large onPress={() => { 
             this.props.navigation.navigate('Map', {
               destination: venues[currentIndex].address,
+              destinationCoords: venues[currentIndex].latLng,
+              startCoords: this.props.navigation.state.params.startLocation,
             })}} fontSize={(Platform.OS === 'ios' ? 13 : 18)} titleStyle={stylesheet.buttonTitle} buttonStyle={stylesheet.buttonStyle} borderRadius={5} large title="GO!"/>
         </View>
 

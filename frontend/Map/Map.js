@@ -6,7 +6,6 @@ import { MapView } from 'expo';
 export default class Map extends Component {
   constructor(props) {
     super(props);
-
   }
 
   static navigationOptions = {
@@ -16,6 +15,11 @@ export default class Map extends Component {
       flex: 1,
       fontFamily: (Platform.OS === 'ios') ? 'Avenir' : 'normal',
     }
+  }
+
+  componentDidMount() {
+    const destinationCoords = this.props.navigation.state.params.destintionCoords;
+
   }
 
   render() {
@@ -29,6 +33,8 @@ export default class Map extends Component {
             longitudeDelta: 0.0421, 
           }} 
         /> 
+        <Text>{this.props.navigation.state.params.destinationCoords}</Text>
+        <Text>{this.props.navigation.state.params.startCoords}</Text>
       </View>
     )
   }

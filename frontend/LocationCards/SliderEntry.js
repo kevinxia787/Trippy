@@ -37,7 +37,7 @@ export default class SliderEntry extends Component {
     // Here we handle adding location to the map (TODO)
 
     render () {
-        const { data: { name, address } } = this.props;
+        const { data: { name, address, latLng } } = this.props;
         return (
             <TouchableOpacity
               activeOpacity={1}
@@ -45,6 +45,8 @@ export default class SliderEntry extends Component {
               onPress={() => {
                 this.props.navigation.navigate('Map', {
                   destination: address,
+                  destinationCoords: latLng,
+                  startCoords: this.props.navigation.state.params.startLocation,
                 })
               }}
               >
