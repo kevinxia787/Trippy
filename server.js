@@ -143,7 +143,7 @@ function getVenueAPI(user_location,section) {
     });
 }
 
-app.get("/:start/:dest", (req, res) => {
+app.get("/directions/:start/:dest", (req, res) => {
     try {
         const start = req.params.start;
         const dest = req.params.dest;
@@ -161,7 +161,7 @@ app.get("/:start/:dest", (req, res) => {
 })
 
 
-app.get("/:address", (req, res) => {
+app.get("/geocoding/:address", (req, res) => {
     try {
         const address = req.params.address;
         getLatLng(address).then(async function (body1) {
@@ -176,7 +176,7 @@ app.get("/:address", (req, res) => {
     }
 })
 
-app.get("/:user_location/:section", (req, res) => {
+app.get("/suggestions/:user_location/:section", (req, res) => {
     try {
         const user_location = req.params.user_location;
         const section = req.params.section;
