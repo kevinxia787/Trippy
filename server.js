@@ -66,7 +66,6 @@ async function getDetailAPI(venueId){
 
 }
 
-https://api.opencagedata.com/geocode/v1/json?key=e80bb90e4d5b495596e712e2703c2451&q=Frauenplan+1%2C+99423+Weimar%2C+Germany&pretty=1
 
 function getLatLng(address) {
     return new Promise(function(success, failure) {
