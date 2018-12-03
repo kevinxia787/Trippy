@@ -70,7 +70,7 @@ async function getDetailAPI(venueId){
 
 function getPolyline(start, dest) {
     const latLng = start + ';' + dest;
-    console.log(latLng);
+    console.log('test',latLng);
     let polylineUrl = 'https://api.mapbox.com/directions/v5/mapbox/walking/' + latLng;
     console.log(polylineUrl);
     return new Promise(function(success, failure) {
@@ -148,7 +148,7 @@ app.get("/directions/:start/:dest", (req, res) => {
         const start = req.params.start;
         const dest = req.params.dest;
         getPolyline(start, dest).then(async function(body) {
-            console.log(body.routes[0].geometry);
+            console.log(body);
             let polyline = body.routes[0].geometry;
             res.send(MapboxPolyline.decode(polyline));
         }).catch((err) => {
