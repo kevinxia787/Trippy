@@ -1,14 +1,13 @@
 {
   "name": "trippy",
   "version": "1.0.0",
-  "description": "",
+  "description": "Spark 2018 Application",
   "main": "server.js",
   "dependencies": {
+    "@mapbox/polyline": "^1.0.0",
     "dotenv": "^6.1.0",
     "express": "^4.16.4",
     "node-fetch": "^2.3.0",
-    "react-native-easy-grid": "^0.2.0",
-    "react-native-snap-carousel": "^3.7.5",
     "request": "^2.88.0"
   },
   "devDependencies": {},
