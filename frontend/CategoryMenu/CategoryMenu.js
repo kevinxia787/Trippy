@@ -31,7 +31,6 @@ export default class CategoryMenu extends Component {
   // Call the geocoding api here to convert this.state.latLng to lat lng
   componentDidMount() {
     const address = this.props.navigation.state.params.location;
-    console.log('debug', address);
     fetchLatLng(address)
       .then((result) => {
         let lat = result.lat;

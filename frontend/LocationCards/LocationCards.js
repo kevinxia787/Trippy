@@ -29,7 +29,6 @@ export default class LocationCards extends Component {
 
   componentDidMount() {
     const location = this.props.navigation.state.params.startLocation;
-    console.log(location);
     const category = this.props.navigation.state.params.category;
     // Fetch Express Get route
     fetchVenues(location, category)
@@ -67,7 +66,6 @@ export default class LocationCards extends Component {
 
   render(){
     const { venues, currentIndex } = this.state;
-    console.log(currentIndex);
     return (
       <View style={[styles.exampleContainer]}>
         <Carousel
