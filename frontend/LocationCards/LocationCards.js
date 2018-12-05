@@ -27,6 +27,38 @@ export default class LocationCards extends Component {
     }
   }
 
+  componentWillReceiveProps() {
+    const location = this.props.navigation.state.params.startLocation;
+    const category = this.props.navigation.state.params.category;
+    // Fetch Express Get route
+    fetchVenues(location, category)
+      .then((venue) => {
+        // Generate 10 random indexes between [0, 50)
+        var venueEntry = [];
+        var randomIndex = [];
+        for (let i = 0; i < 10; i++) {
+          let tempIndex = Math.floor(Math.random() * (venue.length - 0) + 0);
+          randomIndex.push(tempIndex);
+        }
+
+        // Utilize 10 random indexes and grab venues
+
+        for (let i = 0; i < randomIndex.length; i++) {
+          let tempObj = {};
+          let entry = venue[randomIndex[i]];
+          tempObj.name = entry.name;
+          tempObj.id = entry.Id;
+          tempObj.address = entry.address[0] + "\n" + entry.address[1] + "\n" + entry.address[2];
+          tempObj.latLng = entry.latitude + "," + entry.longitude;
+          tempObj.illustration = 'https://m.static.lagardere.cz/evropa2/image/2018/04/mc1.jpg';
+          venueEntry.push(tempObj);
+        }
+        this.setState({venues: venueEntry});
+      }).catch((err) => {
+        console.log(err);
+      })
+  }
+
   componentDidMount() {
     console.log("it called");
     const location = this.props.navigation.state.params.startLocation;
