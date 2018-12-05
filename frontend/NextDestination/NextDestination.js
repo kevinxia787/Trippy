@@ -6,7 +6,7 @@ import { Button, Card } from 'react-native-elements';
 
 import MapView, { Polyline, Marker } from 'react-native-maps';
 
-export default class Map extends Component {
+export default class NextDestination extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -26,14 +26,6 @@ export default class Map extends Component {
   componentDidMount() {
     const destinationCoords = this.props.navigation.state.params.destinationCoords;
     const startCoords = this.props.navigation.state.params.startCoords;
-
-    
-
-    // Add the current POI to list of locations visited on this current trip
-
-    let tripUpdate = (this.props.navigation.state.params.currentTrip !== undefined) ? this.props.navigation.state.params.currentTrip : [];
-
-    tripUpdate.push({address: this.props.navigation.state.params.address, coords: destinationCoords})
 
     // Reformat above to lat and long values
     let startCoordsSplit = startCoords.replace(/\s/g, "").split(",");
@@ -63,7 +55,7 @@ export default class Map extends Component {
           tempObj.longitude = res[i][1];
           routeCoords.push(tempObj);
         }
-        this.setState({routeCoords: routeCoords, currentTrip: tripUpdate, initialRegion: this.getRegionForCoordinates(routeCoords) })
+        this.setState({routeCoords: routeCoords, initialRegion: this.getRegionForCoordinates(routeCoords) })
       }).catch((err) => {
         console.log(err);
       })
@@ -112,8 +104,7 @@ export default class Map extends Component {
     let startLong = Number(startCoords.replace(/\s/g, "").split(",")[1]);
     let destLat = Number(destCoords.replace(/\s/g, "").split(",")[0]);
     let destLong = Number(destCoords.replace(/\s/g, "").split(",")[1]);
-    const { routeCoords, initialRegion} = this.state;
-
+    const { routeCoords, initialRegion } = this.state;
     return (
       <View> 
         { (initialRegion !== undefined) ?
@@ -153,10 +144,15 @@ export default class Map extends Component {
               startLocation: this.props.navigation.state.params.destinationCoords,
               startAddress: this.props.navigation.state.params.destination,
               category: this.props.navigation.state.params.category,
+              currentTrip: this.props.navigation.state.params.currentTrip,
             })
           }}
           large fontSize={(Platform.OS === 'ios' ? 13 : 18)} titleStyle={stylesheet.buttonTitle} buttonStyle={stylesheet.buttonStyle} borderRadius={5} title="Add POI"/>
-          <Button large fontSize={(Platform.OS === 'ios' ? 13 : 18)} titleStyle={stylesheet.buttonTitle} buttonStyle={stylesheet.buttonStyle} borderRadius={5} title="End Trip"/>
+          <Button onPress={() => {
+            this.props.navigation.navigate('CurrentTrip', {
+              currentTrip: this.props.navigation.state.params.currentTrip,
+            })
+          }} large fontSize={(Platform.OS === 'ios' ? 13 : 18)} titleStyle={stylesheet.buttonTitle} buttonStyle={stylesheet.buttonStyle} borderRadius={5} title="End Trip"/>
         </View> 
 
         <Card

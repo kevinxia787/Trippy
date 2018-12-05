@@ -16,6 +16,8 @@ export default class LocationCards extends Component {
     this.state = {
       venues: [],
       currentIndex: 0,
+      currentTrip: [],
+      counter: 0,
     }
   }
   static navigationOptions = {
@@ -53,14 +55,14 @@ export default class LocationCards extends Component {
           tempObj.illustration = 'https://m.static.lagardere.cz/evropa2/image/2018/04/mc1.jpg';
           venueEntry.push(tempObj);
         }
-        this.setState({venues: venueEntry});
+        this.setState({venues: venueEntry, counter: this.state.counter + 1});
       }).catch((err) => {
         console.log(err);
       })
   }
 
   componentDidMount() {
-    console.log("it called");
+    
     const location = this.props.navigation.state.params.startLocation;
     const category = this.props.navigation.state.params.category;
     // Fetch Express Get route
@@ -86,7 +88,7 @@ export default class LocationCards extends Component {
           tempObj.illustration = 'https://m.static.lagardere.cz/evropa2/image/2018/04/mc1.jpg';
           venueEntry.push(tempObj);
         }
-        this.setState({venues: venueEntry});
+        this.setState({venues: venueEntry, counter: this.state.counter + 1});
       }).catch((err) => {
         console.log(err);
       })
@@ -97,8 +99,15 @@ export default class LocationCards extends Component {
     this.setState({ currentIndex });
   }
 
+  updateCurrentTrip = (name, dest, destLatLng, currentTrip) => {
+    currentTrip.push({address: dest, destinationCoords: destLatLng})
+    return currentTrip;
+  }
+
   render(){
-    const { venues, currentIndex } = this.state;
+    const { venues, currentIndex, currentTrip } = this.state;
+    // currentTrip.push({address: venues[currentIndex].address, destinationCoords: venues[currentIndex].latLng, name: venues[currentIndex].name})
+    
     return (
       <View style={[styles.exampleContainer]}>
         <Carousel
@@ -106,7 +115,7 @@ export default class LocationCards extends Component {
           data={venues}
           renderItem={({item, index}) => {
             return (
-              <SliderEntry navigation={this.props.navigation} index={index} data={item} even={true}/>
+              <SliderEntry navigation={this.props.navigation} currentTrip={currentTrip} index={index} data={item} even={true}/>
             )
           }}
           sliderWidth={sliderWidth}
@@ -126,6 +135,7 @@ export default class LocationCards extends Component {
               startCoords: this.props.navigation.state.params.startLocation,
               startAddress: this.props.navigation.state.params.startAddress,
               category: this.props.navigation.state.params.category,
+              currentTrip: this.updateCurrentTrip(venues[currentIndex].name,venue[currentIndex].address, venue[currentIndex].latLng, currentTrip)
             })}} fontSize={(Platform.OS === 'ios' ? 13 : 18)} titleStyle={stylesheet.buttonTitle} buttonStyle={stylesheet.buttonStyle} borderRadius={5} large title="GO!"/>
         </View>
 

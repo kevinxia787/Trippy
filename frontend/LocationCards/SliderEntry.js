@@ -34,10 +34,15 @@ export default class SliderEntry extends Component {
         );
     }
 
+    updateCurrentTrip = (name, dest, destLatLng, currentTrip) => {
+      currentTrip.push({address: dest, destinationCoords: destLatLng, name: name})
+      return currentTrip;
+    }
+
     // Here we handle adding location to the map (TODO)
 
     render () {
-        const { data: { name, address, latLng } } = this.props;
+        const { data: { name, address, latLng }, currentTrip } = this.props;
         return (
             <TouchableOpacity
               activeOpacity={1}
@@ -49,6 +54,7 @@ export default class SliderEntry extends Component {
                   startCoords: this.props.navigation.state.params.startLocation,
                   startAddress: this.props.navigation.state.params.startAddress,
                   category: this.props.navigation.state.params.category,
+                  currentTrip: this.updateCurrentTrip(name, address, latLng, currentTrip),
                 })
               }}
               >
