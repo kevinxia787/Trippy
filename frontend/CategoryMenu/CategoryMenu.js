@@ -51,7 +51,9 @@ export default class CategoryMenu extends Component {
             <TouchableHighlight onPress={() => {
               this.props.navigation.navigate('Cards', {
                 category: 'food',
-                startLocation: latLng
+                startLocation: latLng,
+                startAddress: this.props.navigation.state.params.location,
+
               })
             }} style={styles.slide1}>
               <View style={styles.center}>
@@ -65,7 +67,8 @@ export default class CategoryMenu extends Component {
             <TouchableHighlight onPress={() => {
               this.props.navigation.navigate('Cards', {
                 category: 'drinks',
-                startLocation: latLng
+                startLocation: latLng,
+                startAddress: this.props.navigation.state.params.location,
               })
             }}
               style={styles.slide2}>
@@ -81,7 +84,8 @@ export default class CategoryMenu extends Component {
             <TouchableHighlight onPress={() => {
               this.props.navigation.navigate('Cards', {
                 category: 'sights',
-                startLocation: latLng
+                startLocation: latLng,
+                startAddress: this.props.navigation.state.params.location,
               })
             }} style={styles.slide3}>
               <View style={styles.center}>
@@ -94,7 +98,8 @@ export default class CategoryMenu extends Component {
             <TouchableHighlight onPress={() => {
               this.props.navigation.navigate('Cards', {
                 category: 'shops',
-                startLocation: latLng
+                startLocation: latLng,
+                startAddress: this.props.navigation.state.params.location,
               })
             }} style={styles.slide4}>
               <View style={styles.center}>
@@ -109,7 +114,8 @@ export default class CategoryMenu extends Component {
             <TouchableHighlight onPress={() => {
               this.props.navigation.navigate('Cards', {
                 category: 'outdoors',
-                startLocation: latLng
+                startLocation: latLng,
+                startAddress: this.props.navigation.state.params.location,
               })
             }} style={styles.slide5}>
               <View style={styles.center}>
@@ -123,7 +129,8 @@ export default class CategoryMenu extends Component {
             <TouchableHighlight onPress={() => {
               this.props.navigation.navigate('Cards', {
                 category: 'arts',
-                startLocation: latLng
+                startLocation: latLng,
+                startAddress: this.props.navigation.state.params.location,
               })
             }} style={styles.slide6}>
               <View style={styles.center}>
@@ -139,7 +146,8 @@ export default class CategoryMenu extends Component {
             <TouchableHighlight onPress={() => {
               this.props.navigation.navigate('Cards', {
                 category: 'topPicks',
-                startLocation: latLng
+                startLocation: latLng,
+                startAddress: this.props.navigation.state.params.location,
               })
             }} style={styles.slide8} >
               <View style={styles.center}>
@@ -153,7 +161,8 @@ export default class CategoryMenu extends Component {
             <TouchableHighlight onPress={() => {
               this.props.navigation.navigate('Cards', {
                 category: 'trending',
-                startLocation: latLng
+                startLocation: latLng,
+                startAddress: this.props.navigation.state.params.location,
               })
             }} style={styles.slide7} >
               <View style={styles.center}>
@@ -190,43 +199,43 @@ const styles = StyleSheet.create({
   slide2: {
     flex: 1, 
     justifyContent: 'center',
-    justifyContent: 'center',
+    alignItems: 'center',
     backgroundColor: '#39A9DB'
   },
   slide3: {
     flex: 1, 
     justifyContent: 'center',
-    justifyContent: 'center',
+    alignItems: 'center',
     backgroundColor: '#F39237'
   },
   slide4: {
     flex: 1, 
     justifyContent: 'center',
-    justifyContent: 'center',
+    alignItems: 'center',
     backgroundColor: '#F9C80E'
   },
   slide5: {
     flex: 1, 
     justifyContent: 'center',
-    justifyContent: 'center',
+    alignItems: 'center',
     backgroundColor: '#5FAD56'
   },
   slide6: {
     flex: 1, 
     justifyContent: 'center',
-    justifyContent: 'center',
+    alignItems: 'center',
     backgroundColor: '#6457A6'
   },
   slide7: {
     flex: 1, 
     justifyContent: 'center',
-    justifyContent: 'center',
+    alignItems: 'center',
     backgroundColor: '#29339B'
   },
   slide8: {
     flex: 1, 
     justifyContent: 'center',
-    justifyContent: 'center',
+    alignItems: 'center',
     backgroundColor: '#736CED'
   },
 })

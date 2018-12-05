@@ -28,6 +28,7 @@ export default class LocationCards extends Component {
   }
 
   componentDidMount() {
+    console.log("it called");
     const location = this.props.navigation.state.params.startLocation;
     const category = this.props.navigation.state.params.category;
     // Fetch Express Get route
@@ -91,6 +92,8 @@ export default class LocationCards extends Component {
               destination: venues[currentIndex].address,
               destinationCoords: venues[currentIndex].latLng,
               startCoords: this.props.navigation.state.params.startLocation,
+              startAddress: this.props.navigation.state.params.startAddress,
+              category: this.props.navigation.state.params.category,
             })}} fontSize={(Platform.OS === 'ios' ? 13 : 18)} titleStyle={stylesheet.buttonTitle} buttonStyle={stylesheet.buttonStyle} borderRadius={5} large title="GO!"/>
         </View>
 
