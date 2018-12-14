@@ -147,12 +147,12 @@ export default class NextDestination extends Component {
               currentTrip: this.props.navigation.state.params.currentTrip,
             })
           }}
-          large fontSize={(Platform.OS === 'ios' ? 13 : 18)} titleStyle={stylesheet.buttonTitle} buttonStyle={stylesheet.buttonStyle} borderRadius={5} title="Add POI"/>
+          backgroundColor={'#59BAD1'} color={'white'} large fontSize={(Platform.OS === 'ios' ? 13 : 18)} titleStyle={stylesheet.buttonTitle} buttonStyle={stylesheet.buttonStyle} borderRadius={5} title="Add POI"/>
           <Button onPress={() => {
             this.props.navigation.navigate('CurrentTrip', {
               currentTrip: this.props.navigation.state.params.currentTrip,
             })
-          }} large fontSize={(Platform.OS === 'ios' ? 13 : 18)} titleStyle={stylesheet.buttonTitle} buttonStyle={stylesheet.buttonStyle} borderRadius={5} title="End Trip"/>
+          }} backgroundColor={'#166779'} color={'white'} large fontSize={(Platform.OS === 'ios' ? 13 : 18)} titleStyle={stylesheet.buttonTitle} buttonStyle={stylesheet.buttonStyle} borderRadius={5} title="End Trip"/>
         </View> 
 
         <Card

@@ -127,7 +127,7 @@ export default class LocationCards extends Component {
         />
 
         <View style={stylesheet.buttonContainer}>
-          <Button large onPress={() => { this._carousel.snapToNext(); }} fontSize={(Platform.OS === 'ios' ? 13 : 18)} titleStyle={stylesheet.buttonTitle} buttonStyle={stylesheet.buttonStyle} borderRadius={5} large title="NO"/>
+          <Button large onPress={() => { this._carousel.snapToNext(); }} fontSize={(Platform.OS === 'ios' ? 13 : 18)} backgroundColor={'#59BAD1'} color={'white'} titleStyle={stylesheet.buttonTitle} buttonStyle={stylesheet.buttonStyle1} large title="NO"/>
           <Button large onPress={() => { 
             this.props.navigation.navigate('Map', {
               destination: venues[currentIndex].address,
@@ -136,7 +136,7 @@ export default class LocationCards extends Component {
               startAddress: this.props.navigation.state.params.startAddress,
               category: this.props.navigation.state.params.category,
               currentTrip: this.updateCurrentTrip(venues[currentIndex].name,venues[currentIndex].address, venues[currentIndex].latLng, currentTrip)
-            })}} fontSize={(Platform.OS === 'ios' ? 13 : 18)} titleStyle={stylesheet.buttonTitle} buttonStyle={stylesheet.buttonStyle} borderRadius={5} large title="GO!"/>
+            })}} fontSize={(Platform.OS === 'ios' ? 13 : 18)} titleStyle={stylesheet.buttonTitle} backgroundColor={'white'} color={'#59BAD1'} buttonStyle={stylesheet.buttonStyle2} large title="GO!"/>
         </View>
 
       </View>
@@ -154,9 +154,25 @@ const stylesheet = StyleSheet.create({
     alignItems: 'center',
   },
 
-  buttonStyle: {
-    width: 170,
+  buttonStyle1: {
+    width: 190,
     height: 50,
+    marginRight: -15,
+    borderTopLeftRadius: 5,
+    borderBottomLeftRadius: 5,
+    borderColor: '#59BAD1',
+    borderWidth: 1
+  },
+
+  buttonStyle2: {
+    width: 190,
+    height: 50, 
+    marginLeft: -15,
+    borderTopRightRadius: 5,
+    borderBottomRightRadius: 5,
+    borderColor: '#59BAD1',
+    borderWidth: 1,
+
   },
 
   buttonTitle: {
