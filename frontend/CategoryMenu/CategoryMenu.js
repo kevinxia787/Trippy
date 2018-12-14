@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { View, TouchableHighlight, Text, StyleSheet, Platform } from 'react-native';
-import { CardViewWithIcon, CardView } from 'react-native-simple-card-view'
+import { View, TouchableHighlight, Text, StyleSheet, Platform, ImageBackground } from 'react-native';
 import { fetchLatLng } from '../services/FetchLatLng'
 import { Grid, Row, Col } from 'react-native-easy-grid';
 
@@ -48,19 +47,21 @@ export default class CategoryMenu extends Component {
       <Grid>
         <Row>
           <View style={{width: '50%'}}>
-            <TouchableHighlight onPress={() => {
-              this.props.navigation.navigate('Cards', {
-                category: 'food',
-                startLocation: latLng,
-                startAddress: this.props.navigation.state.params.location,
-
-              })
-            }} style={styles.slide1}>
-              <View style={styles.center}>
-                <Material name="food" size={75} color="#fff"/>
-                <Text style={{color: '#FFF'}}>Food</Text>
-              </View>
+            <TouchableHighlight style={{borderRadius: 10}} onPress={() => {
+                this.props.navigation.navigate('Cards', {
+                  category: 'food',
+                  startLocation: latLng,
+                  startAddress: this.props.navigation.state.params.location,
+                })
+              }}>
+              <ImageBackground source={require('../assets/images/food.jpg')} style={{tintColor: 'black', borderRadius: 10, width: '100%', height: '100%'}}>
+                <View style={{backgroundColor: 'rgba(0,0,0,0.4)', flex: 1}} > 
+                  <Text style={styles.text}>Food</Text>
+                </View>
+              </ImageBackground>
             </TouchableHighlight>
+            
+            
           </View>
           
           <View style={{width: '50%'}}>
@@ -72,10 +73,11 @@ export default class CategoryMenu extends Component {
               })
             }}
               style={styles.slide2}>
-              <View style={styles.center}>
-                <Entypo name="drink" size={75} color="#fff"/>
-                <Text style={{color: '#FFF'}}>Drink</Text>
-              </View>
+              <ImageBackground source={require('../assets/images/drinks.jpg')} style={{width: '100%', height: '100%'}}>
+                <View style={{backgroundColor: 'rgba(0,0,0,0.4)', flex: 1}} > 
+                  <Text style={styles.text}>Drinks</Text>
+                </View>
+              </ImageBackground>
             </TouchableHighlight>
           </View>
         </Row>
@@ -88,10 +90,12 @@ export default class CategoryMenu extends Component {
                 startAddress: this.props.navigation.state.params.location,
               })
             }} style={styles.slide3}>
-              <View style={styles.center}>
-                <Material name="binoculars" size={75} color="#fff"/>
-                <Text style={{color: '#FFF'}}>Sights</Text>
-              </View>
+              <ImageBackground source={require('../assets/images/sights.jpg')} style={{width: '100%', height: '100%'}}>
+                <View style={{backgroundColor: 'rgba(0,0,0,0.4)', flex: 1}} > 
+                  <Text style={styles.text}>Sights</Text>
+                </View>
+              </ImageBackground>
+
             </TouchableHighlight >
           </View>
           <View style={{width: '50%'}}>
@@ -102,10 +106,11 @@ export default class CategoryMenu extends Component {
                 startAddress: this.props.navigation.state.params.location,
               })
             }} style={styles.slide4}>
-              <View style={styles.center}>
-                <Entypo name="shopping-cart" size={75} color="#fff"/>
-                <Text style={{color: '#FFF'}}>Shopping</Text>
-              </View>
+               <ImageBackground source={require('../assets/images/shopping.jpg')} style={{width: '100%', height: '100%'}}>
+                <View style={{backgroundColor: 'rgba(0,0,0,0.4)', flex: 1}} > 
+                  <Text style={styles.text}>Shopping</Text>
+                </View>
+              </ImageBackground>
             </TouchableHighlight>
           </View>
         </Row>
@@ -118,10 +123,11 @@ export default class CategoryMenu extends Component {
                 startAddress: this.props.navigation.state.params.location,
               })
             }} style={styles.slide5}>
-              <View style={styles.center}>
-                <IconFA name="tree" size={75} color="#fff"/>
-                <Text style={{color: '#FFF'}}>Outdoors</Text>
-              </View>
+               <ImageBackground source={require('../assets/images/outdoor.jpg')} style={{width: '100%', height: '100%'}}>
+                <View style={{backgroundColor: 'rgba(0,0,0,0.4)', flex: 1}} > 
+                  <Text style={styles.text}>Outdoors</Text>
+                </View>
+              </ImageBackground>
             </TouchableHighlight>
           </View>
 
@@ -133,10 +139,11 @@ export default class CategoryMenu extends Component {
                 startAddress: this.props.navigation.state.params.location,
               })
             }} style={styles.slide6}>
-              <View style={styles.center}>
-                <IconFA name="paint-brush" size={75} color="#fff"/>
-                <Text style={{color: '#FFF'}}>Arts</Text>
-              </View>
+               <ImageBackground source={require('../assets/images/arts.jpg')} style={{width: '100%', height: '100%'}}>
+                <View style={{backgroundColor: 'rgba(0,0,0,0.4)', flex: 1}} > 
+                  <Text style={styles.text}>Arts</Text>
+                </View> 
+              </ImageBackground>
             </TouchableHighlight>
           </View>
           
@@ -150,10 +157,11 @@ export default class CategoryMenu extends Component {
                 startAddress: this.props.navigation.state.params.location,
               })
             }} style={styles.slide8} >
-              <View style={styles.center}>
-                <Entypo name="trophy" size={75} color="#fff"/>
-                <Text style={{color: '#FFF'}}>Top Picks</Text>
-              </View>
+               <ImageBackground source={require('../assets/images/toppicks.jpg')} style={{width: '100%', height: '100%'}}>
+                <View style={{backgroundColor: 'rgba(0,0,0,0.4)', flex: 1}} > 
+                  <Text style={styles.text}>Top Picks</Text>
+                </View>
+              </ImageBackground>
             </TouchableHighlight>
           </View>
         
@@ -165,10 +173,11 @@ export default class CategoryMenu extends Component {
                 startAddress: this.props.navigation.state.params.location,
               })
             }} style={styles.slide7} >
-              <View style={styles.center}>
-                <Feather name="trending-up" size={75} color="#fff"/>
-                <Text style={{color: '#FFF'}}>Trending</Text>
-              </View>
+               <ImageBackground source={require('../assets/images/trending.jpg')} style={{width: '100%', height: '100%'}}>
+                <View style={{backgroundColor: 'rgba(0,0,0,0.4)', flex: 1}} > 
+                  <Text style={styles.text}>Trending</Text>
+                </View>
+              </ImageBackground>
             </TouchableHighlight>
           </View>
         </Row>
@@ -185,6 +194,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
   },  
+  text: {
+    color: 'white',
+    margin: 5,
+    fontSize: 24,
+  },
   center: {
     flex: 1,
     justifyContent: 'center',
