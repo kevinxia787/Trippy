@@ -108,7 +108,7 @@ export default class NextDestination extends Component {
     return (
       <View> 
         { (initialRegion !== undefined) ?
-           <MapView style={{ alignSelf: 'stretch', height: 350 }} initialRegion={(routeCoords !== undefined) ? this.getRegionForCoordinates(routeCoords) : initialRegion }> 
+           <MapView style={{ alignSelf: 'stretch', height: (Platform.OS === 'ios') ? 250 : 350 }} initialRegion={(routeCoords !== undefined) ? this.getRegionForCoordinates(routeCoords) : initialRegion }> 
             {
               routeCoords !== undefined &&
               <Polyline 
